@@ -1,0 +1,1049 @@
+// colors : https://www.google.com/design/spec/style/color.html#color-color-palette
+
+$black: #000;
+$black80: rgba(0,0,0,0.8);
+$black60: rgba(0,0,0,0.5);
+$black50: rgba(0,0,0,0.5);
+$black40: rgba(0,0,0,0.4);
+$black20: rgba(0,0,0,0.2);
+$gray13: #212121;
+$gray20: #303030;
+$gray28: #424242;
+$white: #fff;
+$red: #F44336;
+$pink: #E91E63;
+$lightBlue: #03A9F4;
+$lightBlue300: #4FC3F7;
+$indigo: #3F51B5;
+$yellow: #FFC107;
+$orange: #ff9800;
+$orange300: #FFB74D;
+$lightGreen: #8BC34A;
+$teal: #009688;
+$purple: #9C27B0;
+$deepPurple: #673AB7;
+$green: green;
+
+
+
+
+@mixin webkitScrollbar () {
+	::-webkit-scrollbar {
+	    width: 10px;
+	}
+	::-webkit-scrollbar:horizontal {
+	    height:10px;
+	}
+	::-webkit-scrollbar-track {
+	    background:#eaeaea;
+	    border-left: 1px solid #ccc;
+	}
+	::-webkit-scrollbar-track:horizontal {
+	    border-top: 1px solid #ccc;
+	}
+	::-webkit-scrollbar-thumb {
+	    background-color: #ccc;
+	    border-radius:5px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+	    background-color: #aaa;
+	}
+	::-webkit-scrollbar-corner{
+	    background:#eaeaea;
+	}
+}
+@mixin word-wrap() {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	-ms-word-break: break-all;
+	word-break: break-word;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@mixin windowShadow() {
+	background-image:linear-gradient(transparent, $black);
+	content:'';
+	display:block;
+	position:absolute;
+	z-index:10;
+	pointer-events:none;
+	height:10%;
+	width:100%;
+	bottom:0;
+}
+@mixin windowShadowTop() {
+	background-image:linear-gradient($black, transparent);
+	content:'';
+	display:block;
+	position:absolute;
+	z-index:10;
+	pointer-events:none;
+	height:10%;
+	width:100%;
+	top:0;
+}
+@mixin iconFlexCenter() {
+    display:-webkit-flex;
+    -webkit-align-items:center;
+    -webkit-justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+@mixin backButton() {
+	.back-button{
+	    width:30px;
+	    height:30px;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    overflow:hidden;
+	    transition:background 0.3s ease;
+	    &.back{
+	        .arrow-wrap{
+	          left:-50%;
+	        }
+	    }
+	    &:hover{
+	        background:$black;
+	        .arrow-wrap{
+	            span{
+	                background:$lightBlue;
+	            }
+	        }
+	    }
+	    .arrow-wrap{
+	        display:block;
+	        position:absolute;
+	        height:60%;
+	        width:60%;
+	        top: 50%;
+	        left: 50%;
+	        transform: translate(-50%, -50%);
+	        transition:left 0.3s ease;
+	        span{
+	            height:1px;
+	            left:0;
+	            top:50%;
+	            background:$white;
+	            position:absolute;
+	            display:block;
+	            transition:background 0.3s ease;
+	        }
+	        .arrow-part-1{
+	            width:100%;
+	            transform: translate(0, -50%);
+	        }
+	        .arrow-part-2{
+	            width:60%;
+	            transform: rotate(-45deg);
+	            transform-origin: 0 0;
+	        }
+	        .arrow-part-3{
+	            width:60%;
+	            transform: rotate(45deg);
+	            transform-origin: 0 0;
+	        }
+	    }
+	}
+}
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+
+@include keyframes( scale-window ){
+    0% {
+        transform: scale( 1, 1 );
+    }
+    50% {
+        transform: scale( 1.01, 1.01 );
+    }
+    100% {
+        transform: scale( 1, 1 );
+    }
+}
+
+
+$font-raj-bold: rajdhanibold, arial, sans-serif;
+$font-raj-regular: rajdhaniregular, arial, sans-serif;
+$font-cast-iron: cast_ironcondensed, arial, sans-serif;
+$font-abel: abelregular, arial, sans-serif;
+
+// GLOBAL STYLES HERE
+
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    height:100%;
+    width:100%;
+    font-family:$font-abel;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit;
+    font-family:$font-abel;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body{
+    font-family:$font-abel;
+    line-height: 1;
+    font-size: 1em;
+    height:100%;
+    width:100%;
+}
+ol, ul{
+    list-style: none;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+div {
+    display: block;
+}
+#page{
+    height:100%;
+    width:100%;
+}
+
+// LOGIN PAGE STYLING
+
+
+.abs {
+    position: absolute!important;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto
+}
+.align_center {
+    text-align: center
+}
+.align_right {
+    text-align: right
+}
+.float_left {
+    float: left
+}
+.float_right {
+    float: right
+}
+
+#wrapper{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+}
+#page{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    .login-background{
+        background-size:cover;
+        width:100%;
+        height:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:1;
+        transition: background 400ms ease;
+        background:url('/images/windows-xp-wallpaper.jpg') center center no-repeat;
+        ms-transform: scale(1.2, 1.2);
+        -webkit-transform: scale(1.2, 1.2);
+        transform: scale(1.2, 1.2);
+
+        .login-form-contain{
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+            width:300px;
+            height:500px;
+            background:$black80;
+            position:absolute;
+            .riskbone-logo{
+                width:200px;
+                margin:50px;
+            }
+            input{
+                display:block;
+                border:$gray28 1px solid;
+                height:30px;
+                width:220px;
+                margin:20px 40px;
+                background:none;
+                color:$white;
+                text-align:center;
+                transition: all 0.3s ease, border 0.3s ease;
+                &:focus{
+                    background:$black;
+                    border:$lightBlue 1px solid;
+                    outline-color: transparent;
+                    outline-style: none;
+                }
+                &:hover{
+                    background:$black;
+                }
+                &.error {
+                    border: 1px solid red;
+                }
+            }
+            button{
+                display:block;
+                width:220px;
+                height:30px;
+                margin:20px 40px;
+                text-transform:uppercase;
+                border:$gray28 1px solid;
+                letter-spacing:2px;
+                background:$white;
+                transition:background 0.3s ease, border 0.3s ease;
+                cursor:pointer;
+                &:hover{
+                    background:$lightBlue;
+                    border:$lightBlue 1px solid;
+                }
+            }
+        }
+    }
+    // #bar_bottom, #bar_top {
+    // transition: opacity 500ms ease;
+    // opacity: 1;
+    //     &.faded {
+    //         opacity: 0;
+    //     }
+    // }
+}
+
+
+
+//  ------------------------------------- DESKTOP PAGE STYLING --------------------------------------------
+
+
+
+
+//   Account Bar and settings menus styles
+
+
+
+@keyframes menu-dropdown-first {
+    0% { opacity:0; }
+    20% { opacity:1; }
+    40% { opacity:1; }
+    60% { opacity:1; }
+    80% { opacity:1; }
+    100% { opacity:1; }
+}
+@keyframes menu-dropdown-second {
+    0% { opacity:0; }
+    20% { opacity:0; }
+    40% { opacity:1; }
+    60% { opacity:1; }
+    80% { opacity:1; }
+    100% { opacity:1; }
+}
+@keyframes menu-dropdown-third {
+    0% { opacity:0; }
+    20% { opacity:0; }
+    40% { opacity:0; }
+    60% { opacity:1; }
+    80% { opacity:1; }
+    100% { opacity:1; }
+}
+@keyframes menu-dropdown-fourth {
+    0% { opacity:0; }
+    20% { opacity:0; }
+    40% { opacity:0; }
+    60% { opacity:0; }
+    80% { opacity:1; }
+    100% { opacity:1; }
+}
+#bar_top{
+    background: $black50;
+    width: 100%;
+    height: 50px;
+    z-index: 13;
+    position: relative;
+    top: 0;
+    position: absolute;
+    left: 0;
+    border-bottom: none;
+    &.problem {
+        background: rgba(100, 10, 10, 0.5);
+
+        .potential-problem {
+            display: inline-block;
+            font-weight: bold;
+
+            font-size: x-large;
+            padding: 10px 10px;
+
+            -webkit-animation: warning 1s infinite; /* Safari 4+ */
+            -moz-animation:    warning 1s infinite; /* Fx 5+ */
+            -o-animation:      warning 1s infinite; /* Opera 12+ */
+            animation:         warning 1s infinite; /* IE 10+, Fx 29+ */
+        }
+    }
+
+    .potential-problem {
+        display: none;
+    }
+
+
+}
+
+
+
+// Notification Drop Down Styles
+
+
+
+
+
+
+
+// Desktop Area Styles
+
+
+
+#desktop{
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right:0;
+    bottom:0;
+    width: 100%;
+    &:before{
+        height: 120%;
+        position: absolute;
+        left: -10%;
+        top: -10%;
+        width: 120%;
+        background: url('/images/windows-xp-wallpaper.jpg') center center no-repeat;
+        background-size: cover;
+        display:block;
+        content:'';
+        z-index:0;
+        transition: all 0.5s ease;
+        -ms-transform:scale(1,1); /* IE 9 */
+        -webkit-transform:scale(1,1); /* Safari */
+        transform:scale(1,1);
+    }
+    .desktop-contain {
+        height:100%;
+        width: 100%;
+        position:fixed;
+        top:0;
+        left: 0;
+        right:0;
+        bottom:0;
+        padding: 0 0 50px 0;
+        z-index:1;
+        transition: all 500ms ease;
+
+        .desktop-icon-contain{
+            width: 98px;
+            height: 98px;
+            margin: 1px;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-direction: column;
+            background:$black20;
+            overflow:hidden;
+            position: absolute;
+            &:hover, &:active {
+                opacity:1;
+                background: rgba(192,192,192,.7);
+            }
+            span {
+                color: $white;
+                font-size: 0.9em;
+                padding: 10px 0;
+                z-index:2;
+                text-align:center;
+            }
+            &.ui-selecting, &.ui-selected {
+                background: #FECA40;
+            }
+            .desktop-icon{
+                display:block;
+                margin:0 auto;
+                max-width:45px;
+                max-height:45px;
+                z-index:2;
+            }
+        }
+    }
+}
+.window {
+    -webkit-background-clip: padding-box;
+    color: $white;
+    display: none;
+    width: 500px;
+    height: 300px;
+    top: 30px;
+    left: 120px;
+    z-index: 2;
+    transition: all 300ms ease;
+    border: 2px solid blue;
+
+    &.ui-draggable-dragging {
+        transition: none;
+    }
+
+    &.window_full {
+        border: 0;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        -webkit-background-clip: padding-box;
+        width: 100%;
+        height: calc(100% - 40px);
+        left: 0;
+        top: 0;
+
+        &.ui-resizable-se {
+            display: none;
+        }
+    }
+
+    &.minimized {
+        top: 100%;
+        width: 0;
+        height: 0;
+    }
+
+    .window_inner{
+        padding:0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .window-top {
+            color: $white;
+            background: blue;
+
+            height:30px;
+            width: 100%;
+
+            .float_left{
+                float:left;
+                .window-icon-contain{
+                    float:left;
+                    @include iconFlexCenter();
+                    width:30px;
+                    height:30px;
+                    .window-icon{
+                        display:block;
+                        max-height:20px;
+                        width:100%;
+                    }
+                }
+                .window-title{
+                    float:left;
+                    display:block;
+                    margin:4px 0;
+                    font-size:1.4em;
+                    text-transform:uppercase;
+                    font-family:$font-raj-bold;
+                    padding-left:5px;
+                }
+            }
+            .float_right{
+                float:right;
+                .window-close,
+                .window-resize,
+                .window-min {
+                    width:30px;
+                    height:30px;
+                    float:left;
+                    position:relative;
+                    background:none;
+                    transition:background 0.3s ease;
+                }
+                .min {
+                    height:1px;
+                    width:16px;
+                    position:absolute;
+                    top:15px;
+                    left:6px;
+                    background:$black;
+                    transition:all 0.3s ease;
+                }
+                .res {
+                    height:14px;
+                    width:14px;
+                    top:10px;
+                    left:6px;
+                    border:1px solid $black;
+                    position:absolute;
+                    transition:all 0.3s ease;
+                }
+                .close {
+                    width:16px;
+                    height:1px;
+                    top:15px;
+                    left:7px;
+                    background:$black;
+                    position:absolute;
+                }
+            }
+        }
+        .window_content{
+            background: $white;
+            color: $black;
+            overflow:auto;
+            top:30px;
+            left:0;
+            right:0;
+            bottom:0;
+        }
+    }
+}
+#taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient( rgb(19, 120, 253) 10%, rgb(3, 70, 158) );
+    border-top: none;
+    z-index: 13;
+    display: -webkit-flex;
+    display: flex;
+    opacity: 1;
+
+    .start-wrapper {
+        color: $white;
+        width: 100px;
+        height: 100%;
+        background: radial-gradient( circle, #01C101, green );
+        transition: background 0.3s ease;
+        border-radius: 0 20px 20px 0px; // fallback
+        border-radius: 8px / 24px;
+        position: absolute;
+        color: #fff;
+        left: -10px;
+        &:hover{
+            background: radial-gradient(circle, #01C101, #018C01);
+        }
+        .taskbar-icon{
+            width: 30px;
+            height: 30px;
+        }
+        &.button-active{
+            background: radial-gradient(circle, #01C101, #018C01)
+        }
+        .start-icon{
+
+        }
+    }
+    .taskbar-dock{
+        height: 100%;
+        width: calc( 100% - 100px);
+        position: absolute;
+        left: 100px;
+
+        .notification-area {
+            position: absolute;
+            width: 200px;
+            height: 100%;
+            display: inline-block;
+            right: 0;
+            background: #1E87F7;
+            top: 0;
+        }
+
+        .taskbar-icon-contain{
+            @include iconFlexCenter();
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0);
+            top: 0;
+            left: 0;
+            position: relative;
+            transition: background 0.3s ease, height 0.3s ease, width 0.3s ease, top 0.3s ease, opacity 500ms linear;
+
+            &.hidden {
+                opacity: 0;
+                height: 0;
+                width: 0;
+            }
+            &.active{
+                background: rgba(0,0,0,1);
+                height: 60px;
+                top: -10px;
+                .iconActiveColor{
+                    display:block;
+                    height: 5px;
+                    top: -5px;
+                }
+                &:hover{
+                    background: rgba(0,0,0,1);
+                    .icon-grouping{
+                        max-height: 80vh;
+                        transition:max-height 0.3s ease;
+                        transition-delay:0.6s;
+                    }
+                }
+                .icon-grouping {
+                    bottom:65px;
+                    max-height:0;
+                    transition:bottom 0.3s ease, max-height 0.3s ease;
+                    transition-delay:0;
+                }
+            }
+            &:hover{
+               background: rgba(0,0,0,0.8);
+                .icon-grouping {
+                    max-height: 80vh;
+                    transition:max-height 0.3s ease;
+                    transition-delay:0.6s;
+                }
+            }
+            .icon-grouping {
+                position: absolute;
+                bottom: 50px;
+                left:0;
+                display: block;
+                height: auto;
+                max-height: 0;
+                overflow:hidden;
+                transition:bottom 0.3s ease, max-height 0.3s ease;
+                transition-delay:0;
+                &:hover {
+
+                }
+                .taskbar-icon-child {
+                    width:50px;
+                    height:50px;
+                    background:$black50;
+                    @include iconFlexCenter();
+                    transition:background 0.3s ease;
+                    position: relative;
+                    &:hover, &.active{
+                        background:$black80;
+                    }
+                }
+                .taskbar-icon {
+                    height: 30px;
+                }
+            }
+            .iconActiveColor{
+                display: none;
+                background: $orange;
+                position: absolute;
+                height: 0;
+                top: 0;
+                left: 0;
+                width: 100%;
+                transition: height 0.3s ease, top 0.3s ease;
+            }
+            .taskbar-icon {
+                width: 25px;
+                height: 25px;
+            }
+
+            .context-menu {
+                border: 1px solid $orange;
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                background: $black80;
+                color: #fff;
+                width: 100px;
+                height: auto;
+                padding: 5px;
+                transition: all 300ms ease;
+                z-index: 1;
+
+                &.hidden {
+                    height: 0;
+                    overflow: hidden;
+                    padding: 0;
+                    border: none;
+                }
+
+                li {
+                    background: $gray28;
+                    padding: 3px;
+
+                    &:hover {
+                        background: $gray20;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@-webkit-keyframes warning {
+    0% {
+        color: $white;
+    }
+    50% {
+        color: $red;
+    }
+    100% {
+        color: $white;
+    }
+}
+@-moz-keyframes warning {
+    0% {
+        color: $white;
+    }
+    50% {
+        color: $red;
+    }
+    100% {
+        color: $white;
+    }
+}
+@-o-keyframes warning {
+    0% {
+        color: $white;
+    }
+    50% {
+        color: $red;
+    }
+    100% {
+        color: $white;
+    }
+}
+@keyframes warning {
+    0% {
+        color: $white;
+    }
+    50% {
+        color: $red;
+    }
+    100% {
+        color: $white;
+    }
+}
+
+
+
+
+.ui-resizable-helper {
+    border: 1px dotted #FF9800;
+}
+
+.error {
+    -webkit-animation-name: error;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: error;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-duration: 0.6s;
+    animation-delay: 0s;
+}
+
+@keyframes error {
+    0% {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+
+    20% {
+        -webkit-transform: rotateY(10deg);
+        transform: rotateY(10deg);
+    }
+
+    40% {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+
+    60% {
+        -webkit-transform: rotateY(-10deg);
+        transform: rotateY(-10deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+}
+
+.hidden {
+    // display: none;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    border: none;
+    margin: 0;
+    padding: 0
+}
+
+
+/************************* sections **************************/
+
+.xp {
+    #taskbar {
+        .start-wrapper {
+            .start-icon {
+                background: url("/images/icons/winxp-icon.png") center center no-repeat;
+                width: 60%;
+                height: 25px;
+                background-size: contain;
+                padding-left: 35px;
+                display: inline-block;
+
+                background-position: 10px 0;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                width: 100%;
+
+                span {
+                    color: white;
+                    position: absolute;
+                    right: 25px;
+                    top: 25%;
+                    font-weight: bold;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+
+
+    .window {
+        .window_inner {
+            .window-top {
+                .float_right {
+                    .min {
+                        height: 10px;
+                        width: 10px;
+                        position:absolute;
+                        top:15px;
+                        left:6px;
+                        background: $black;
+                    }
+                    .res {
+                        height:14px;
+                        width:14px;
+                        top:10px;
+                        left:6px;
+                        border:1px solid $black;
+                        position:absolute;
+                    }
+                    .close {
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background: url("/images/winxp-window-controls.png") 34px -3px;
+                    }
+                }
+            }
+        }
+    }
+
+    #desktop {
+
+        .desktop-contain {
+
+            .desktop-icon-contain {
+
+                .desktop-icon{
+
+                    width: 100%;
+                    height: 100%;
+
+                    &.browser {
+                        background: url("/images/icons/icons-xp.png") -50px 85px;
+
+                    }
+
+                    &.mycomputer {
+                        background: url("/images/icons/icons-xp.png") 0px 4px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// APPS
+
+.browser {
+    .window_content{
+        iframe {
+            width: 100%;
+            height: calc( 100% - 30px);
+        }
+    }
+}
