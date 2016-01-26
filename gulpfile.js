@@ -44,9 +44,10 @@ gulp.task('html', function() {
 });
 
 gulp.task('styles',function(cb) {
-    return gulp.src(src + 'styles/main.scss')
+    return gulp.src( [ src + 'styles/normalize.min.css', src + 'styles/main.scss' ] )
       .pipe($.sass().on('error', $.sass.logError))
       .pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
+      .pipe( $.concat('main.css') )
       .pipe(gulp.dest( dist + 'css/') )
       .pipe($.size({ title : 'css' }))
       .pipe($.connect.reload());

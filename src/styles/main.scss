@@ -52,43 +52,6 @@ $green: green;
 	    background:#eaeaea;
 	}
 }
-@mixin word-wrap() {
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	-ms-word-break: break-all;
-	word-break: break-word;
-	-ms-hyphens: auto;
-	-moz-hyphens: auto;
-	-webkit-hyphens: auto;
-	hyphens: auto;
-}
-@mixin ellipsis() {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-@mixin windowShadow() {
-	background-image:linear-gradient(transparent, $black);
-	content:'';
-	display:block;
-	position:absolute;
-	z-index:10;
-	pointer-events:none;
-	height:10%;
-	width:100%;
-	bottom:0;
-}
-@mixin windowShadowTop() {
-	background-image:linear-gradient($black, transparent);
-	content:'';
-	display:block;
-	position:absolute;
-	z-index:10;
-	pointer-events:none;
-	height:10%;
-	width:100%;
-	top:0;
-}
 @mixin iconFlexCenter() {
     display:-webkit-flex;
     -webkit-align-items:center;
@@ -96,63 +59,6 @@ $green: green;
     display:flex;
     align-items:center;
     justify-content:center;
-}
-@mixin backButton() {
-	.back-button{
-	    width:30px;
-	    height:30px;
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    overflow:hidden;
-	    transition:background 0.3s ease;
-	    &.back{
-	        .arrow-wrap{
-	          left:-50%;
-	        }
-	    }
-	    &:hover{
-	        background:$black;
-	        .arrow-wrap{
-	            span{
-	                background:$lightBlue;
-	            }
-	        }
-	    }
-	    .arrow-wrap{
-	        display:block;
-	        position:absolute;
-	        height:60%;
-	        width:60%;
-	        top: 50%;
-	        left: 50%;
-	        transform: translate(-50%, -50%);
-	        transition:left 0.3s ease;
-	        span{
-	            height:1px;
-	            left:0;
-	            top:50%;
-	            background:$white;
-	            position:absolute;
-	            display:block;
-	            transition:background 0.3s ease;
-	        }
-	        .arrow-part-1{
-	            width:100%;
-	            transform: translate(0, -50%);
-	        }
-	        .arrow-part-2{
-	            width:60%;
-	            transform: rotate(-45deg);
-	            transform-origin: 0 0;
-	        }
-	        .arrow-part-3{
-	            width:60%;
-	            transform: rotate(45deg);
-	            transform-origin: 0 0;
-	        }
-	    }
-	}
 }
 
 @mixin animation($animate...) {
@@ -184,19 +90,6 @@ $green: green;
     }
     @keyframes #{$animationName} {
         @content;
-    }
-}
-
-
-@include keyframes( scale-window ){
-    0% {
-        transform: scale( 1, 1 );
-    }
-    50% {
-        transform: scale( 1.01, 1.01 );
-    }
-    100% {
-        transform: scale( 1, 1 );
     }
 }
 
@@ -264,9 +157,6 @@ div {
     width:100%;
 }
 
-// LOGIN PAGE STYLING
-
-
 .abs {
     position: absolute!important;
     top: auto;
@@ -310,9 +200,6 @@ div {
         z-index:1;
         transition: background 400ms ease;
         background:url('/images/windows-xp-wallpaper.jpg') center center no-repeat;
-        ms-transform: scale(1.2, 1.2);
-        -webkit-transform: scale(1.2, 1.2);
-        transform: scale(1.2, 1.2);
 
         .login-form-contain{
             top:0;
@@ -369,106 +256,11 @@ div {
             }
         }
     }
-    // #bar_bottom, #bar_top {
-    // transition: opacity 500ms ease;
-    // opacity: 1;
-    //     &.faded {
-    //         opacity: 0;
-    //     }
-    // }
 }
 
 
 
 //  ------------------------------------- DESKTOP PAGE STYLING --------------------------------------------
-
-
-
-
-//   Account Bar and settings menus styles
-
-
-
-@keyframes menu-dropdown-first {
-    0% { opacity:0; }
-    20% { opacity:1; }
-    40% { opacity:1; }
-    60% { opacity:1; }
-    80% { opacity:1; }
-    100% { opacity:1; }
-}
-@keyframes menu-dropdown-second {
-    0% { opacity:0; }
-    20% { opacity:0; }
-    40% { opacity:1; }
-    60% { opacity:1; }
-    80% { opacity:1; }
-    100% { opacity:1; }
-}
-@keyframes menu-dropdown-third {
-    0% { opacity:0; }
-    20% { opacity:0; }
-    40% { opacity:0; }
-    60% { opacity:1; }
-    80% { opacity:1; }
-    100% { opacity:1; }
-}
-@keyframes menu-dropdown-fourth {
-    0% { opacity:0; }
-    20% { opacity:0; }
-    40% { opacity:0; }
-    60% { opacity:0; }
-    80% { opacity:1; }
-    100% { opacity:1; }
-}
-#bar_top{
-    background: $black50;
-    width: 100%;
-    height: 50px;
-    z-index: 13;
-    position: relative;
-    top: 0;
-    position: absolute;
-    left: 0;
-    border-bottom: none;
-    &.problem {
-        background: rgba(100, 10, 10, 0.5);
-
-        .potential-problem {
-            display: inline-block;
-            font-weight: bold;
-
-            font-size: x-large;
-            padding: 10px 10px;
-
-            -webkit-animation: warning 1s infinite; /* Safari 4+ */
-            -moz-animation:    warning 1s infinite; /* Fx 5+ */
-            -o-animation:      warning 1s infinite; /* Opera 12+ */
-            animation:         warning 1s infinite; /* IE 10+, Fx 29+ */
-        }
-    }
-
-    .potential-problem {
-        display: none;
-    }
-
-
-}
-
-
-
-// Notification Drop Down Styles
-
-
-
-
-
-
-
-// Desktop Area Styles
-
-
-
 #desktop{
     height: 100%;
     position: absolute;
@@ -501,7 +293,7 @@ div {
         left: 0;
         right:0;
         bottom:0;
-        padding: 0 0 50px 0;
+        padding: 0 0 40px 0;
         z-index:1;
         transition: all 500ms ease;
 
@@ -514,22 +306,26 @@ div {
             justify-content: center;
             align-content: center;
             flex-direction: column;
-            background:$black20;
             overflow:hidden;
             position: absolute;
+
+            &.selected {
+                background:$black20;
+            }
+
             &:hover, &:active {
                 opacity:1;
                 background: rgba(192,192,192,.7);
             }
+            &.ui-selecting, &.ui-selected {
+                background: #FECA40;
+            }
             span {
-                color: $white;
+                color: $black;
                 font-size: 0.9em;
                 padding: 10px 0;
                 z-index:2;
                 text-align:center;
-            }
-            &.ui-selecting, &.ui-selected {
-                background: #FECA40;
             }
             .desktop-icon{
                 display:block;
@@ -550,8 +346,10 @@ div {
     top: 30px;
     left: 120px;
     z-index: 2;
-    transition: all 300ms ease;
-    border: 2px solid blue;
+    -webkit-transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition:         all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #0752B5;
+    overflow: hidden;
 
     &.ui-draggable-dragging {
         transition: none;
@@ -628,30 +426,8 @@ div {
                     background:none;
                     transition:background 0.3s ease;
                 }
-                .min {
-                    height:1px;
-                    width:16px;
-                    position:absolute;
-                    top:15px;
-                    left:6px;
-                    background:$black;
-                    transition:all 0.3s ease;
-                }
-                .res {
-                    height:14px;
-                    width:14px;
-                    top:10px;
-                    left:6px;
-                    border:1px solid $black;
-                    position:absolute;
-                    transition:all 0.3s ease;
-                }
-                .close {
-                    width:16px;
-                    height:1px;
-                    top:15px;
-                    left:7px;
-                    background:$black;
+                .min, .res, .close {
+                    background-size: cover;
                     position:absolute;
                 }
             }
@@ -980,61 +756,117 @@ div {
 
 
     .window {
+        border-radius: 3px;
+
         .window_inner {
             .window-top {
+                background: linear-gradient(#1378fd 10%, #03469e);
+
                 .float_right {
-                    .min {
-                        height: 10px;
-                        width: 10px;
-                        position:absolute;
-                        top:15px;
-                        left:6px;
-                        background: $black;
-                    }
-                    .res {
-                        height:14px;
-                        width:14px;
-                        top:10px;
-                        left:6px;
-                        border:1px solid $black;
-                        position:absolute;
-                    }
-                    .close {
+                    .min, .res, .close {
+                        background-image: url("/images/winxp-window-controls.png");
                         width: 100%;
                         height: 100%;
-                        top: 0;
-                        left: 0;
-                        background: url("/images/winxp-window-controls.png") 34px -3px;
+                        opacity: 0.8;
+                        border-radius: 6px;
+                        transition: all 300ms ease;
+                        &:hover {
+                            opacity: 1;
+                        }
                     }
+                    .min {
+                        background-position: 0 0;
+                    }
+                    .res {
+                        background-position: -29px 0;
+                    }
+                    .close {
+                        background-position: 32px 0px;
+                    }
+                }
+            }
+        }
+        &.recyclebin {
+            .window_inner {
+                .window_content {
+                    background-image: url("/images/xp_recyclebin.gif");
+                    background-position: -4px -30px;
+                    background-repeat: no-repeat;
                 }
             }
         }
     }
 
     #desktop {
-
         .desktop-contain {
-
             .desktop-icon-contain {
-
                 .desktop-icon{
-
                     width: 100%;
                     height: 100%;
-
-                    &.browser {
-                        background: url("/images/icons/icons-xp.png") -50px 85px;
-
-                    }
+                    background-repeat: no-repeat;
+                    background-size: contain;
 
                     &.mycomputer {
                         background: url("/images/icons/icons-xp.png") 0px 4px;
+                    }
+                    &.recyclebin {
+                        background: url("/images/icons/icons-xp.png") -5px -79px;
                     }
                 }
             }
         }
     }
 }
+
+.win-7 {
+
+    #desktop {
+        .desktop-contain {
+            .desktop-icon-contain {
+                .desktop-icon{
+                    width: 100%;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    &.mycomputer {
+                        background: url("/images/icons/icons-xp.png") 0px 4px;
+                    }
+                    &.recyclebin {
+                        background: url("/images/icons/icons-xp.png") 0px -79px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.desktop-icon{
+    &.weather {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background: url("/images/icons/weather2.png");
+        background-position: 0px 15px;
+    }
+    &.browser {
+        background: url("/images/icons/spin-top.png") 5px 0px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+
 
 
 // APPS

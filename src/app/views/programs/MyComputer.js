@@ -1,7 +1,7 @@
 import App from "../../App";
 import Backbone from "backbone";
 import Model from "../../models/Model";
-import template from "../../templates/window.hbs";
+import template from "../../templates/mycomputer.hbs";
 import Window from "./Window";
 
 export default Window.extend({
