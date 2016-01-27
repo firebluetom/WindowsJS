@@ -792,8 +792,22 @@ div {
                 height: 100%;
                 width: 100%;
                 background-size: 80px;
+
+                &.browser, &.weather {
+                    background-image: url("../images/icons/spin-top.png");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: 8px -1px;
+                }
+                &.weather {
+                    background-image: url("../images/icons/weather2.png");
+                    background-position: 0 0;
+                    -webkit-filter: brightness(3);
+                    filter: brightness(3);
+                }
             }
         }
+
         @mixin innerRepeater( $key, $x, $y) {
             &.#{$key} {
                 .window_inner {
