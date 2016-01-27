@@ -806,28 +806,27 @@ div {
         @include innerRepeater( recyclebin, 4, 86 );
         @include innerRepeater( mycomputer, 2, 0 );
 
-        &.recyclebin {
-            .window_inner {
-                .window_content {
-                    background-image: url("../images/xp_recyclebin.gif");
-                    background-position: -4px -30px;
-                    background-repeat: no-repeat;
-                }
-            }
-        }
-
-        &.mycomputer {
+        &.mycomputer, &.recyclebin {
             .window_content {
                 .file-menu, .nav-menu, .address-bar {
                     font-size: 12px;
                     width: 100%;
                     border-bottom: 2px solid gray;
                     background-color: #EFEDD8;
+                    overflow: hidden;
                     ul {
+                        height: 100%;
                         > li {
+                            height: 100%;
                             padding: 5px;
                             display: inline-block;
                             text-align: center;
+                            vertical-align: middle;
+
+                            &:hover {
+                                box-shadow: 0px 0px 2px gray;
+                                border-radius: 2px;
+                            }
                         }
                     }
                 }
@@ -836,6 +835,7 @@ div {
                 }
                 .nav-menu {
                     height: 40px;
+                    ul > li { width: 60px; }
                 }
                 .address-bar {
                     height: 20px;
@@ -843,17 +843,19 @@ div {
                 }
                 .left-side, .right-side {
                     display: inline-block;
+                    height: calc( 100% - 80px );
+                    position: absolute;
+                    overflow: auto;
                 }
                 .left-side {
                     background-color: #7292E0;
-                    height: calc( 100% - 80px );
                     width: 100px;
-
+                    left: 0;
                 }
                 .right-side {
                     background-color: #fff;
-                    height: calc( 100% - 80px );
                     width: calc( 100% - 100px );
+                    right: 0;
                 }
             }
         }
