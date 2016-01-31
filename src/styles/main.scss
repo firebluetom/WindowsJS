@@ -478,15 +478,17 @@ div {
         position: absolute;
         color: #fff;
         left: -10px;
+
         &:hover{
             background: radial-gradient(circle, #01C101, #018C01);
+        }
+
+        &.button-active{
+            background: radial-gradient(circle, #01C101, #018C01)
         }
         .taskbar-icon{
             width: 30px;
             height: 30px;
-        }
-        &.button-active{
-            background: radial-gradient(circle, #01C101, #018C01)
         }
         .start-icon{
 
@@ -764,25 +766,44 @@ div {
 .xp {
     #taskbar {
         .start-wrapper {
+            transition: all 100ms linear;
+
+            &.active {
+
+                background: radial-gradient(circle, #01C101, #018C01);
+                box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+
+                .start-menu {
+                    display: block;
+                }
+            }
+
             .start-icon {
-                background: url("../images/icons/winxp-icon.png") center center no-repeat;
+
                 width: 60%;
                 height: 25px;
-                background-size: contain;
-                padding-left: 35px;
                 display: inline-block;
-
-                background-position: 10px 0;
                 position: absolute;
                 left: 10px;
-                top: 10px;
                 width: 100%;
+                padding: 8px;
+
+                &::before {
+                    background: url("../images/icons/winxp-icon.png") center center no-repeat;
+                    content: '';
+                    height: 100%;
+                    width: 30px;
+                    position: absolute;
+                    /* top: 0; */
+                    left: 5px;
+                    background-size: contain;
+                }
 
                 span {
                     color: white;
                     position: absolute;
                     right: 25px;
-                    top: 25%;
+                    top: 13px;
                     font-weight: bold;
                     font-style: italic;
                 }
@@ -797,10 +818,6 @@ div {
                 border-radius: 5px 5px 0 0;
                 border-right: 2px solid #0854B8;
                 display: none;
-
-                &.active {
-                    display: block;
-                }
 
                 .user {
                     background: linear-gradient(#03469e 10%, #1378fd);

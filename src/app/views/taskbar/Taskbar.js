@@ -55,7 +55,7 @@ export default Backbone.View.extend( {
     },
 
     start: function() {
-        this.$el.find( '.start-menu' ).toggleClass( 'active' );
+        this.$el.find( '.start-wrapper' ).toggleClass( 'active' );
     },
 
     showWindowClicked: function( ev ){
