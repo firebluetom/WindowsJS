@@ -6,7 +6,7 @@ import PageView from "../views/base/PageView";
 import Model from "../models/Model";
 import template from "../templates/desktop/desktop.hbs";
 import DesktopModel from "../models/DesktopModel";
-import DockView from "../views/dock/DockView";
+import Taskbar from "../views/taskbar/Taskbar";
 
 
 export default PageView.extend({
@@ -74,8 +74,8 @@ export default PageView.extend({
 
         this.$el.html( template() );
 
-        // initialize the Dock
-        this.dock = new DockView();
+        // initialize the Taskbar
+        this.taskbar = new Taskbar();
 
         // listen to global events
 

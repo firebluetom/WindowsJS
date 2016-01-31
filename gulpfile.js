@@ -61,8 +61,8 @@ gulp.task('serve', function() {
       port: 35728
     }
   });
-  gulp.src(__filename)
-    .pipe($.open({uri: 'http://localhost:'+ port }));
+  // gulp.src(__filename)
+    // .pipe($.open({uri: 'http://localhost:'+ port }));
 });
 
 gulp.task('images', function(cb) {

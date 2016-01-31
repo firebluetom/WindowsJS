@@ -20,6 +20,7 @@ export default Backbone.Model.extend({
 
         this.addIconToDesktop('weather');
         this.addIconToDesktop('mycomputer');
+        this.addIconToDesktop('mydocuments');
         this.addIconToDesktop('recyclebin');
         this.addIconToDesktop('browser');
     },

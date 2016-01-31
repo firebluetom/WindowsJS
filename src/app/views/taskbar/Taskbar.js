@@ -3,8 +3,8 @@ import Backbone from 'backbone';
 import $ from 'jquery';
 import Model from '../../models/Model';
 import DockIconsCollection from '../../collections/DockIconsCollection';
-import template from '../../templates/dock/dock.hbs';
-import taskbarIconTemplate from "../../templates/dock/taskbarIcon.hbs"
+import template from '../../templates/taskbar/taskbar.hbs';
+import taskbarIconTemplate from "../../templates/taskbar/taskbarIcon.hbs"
 
 export default Backbone.View.extend( {
 
@@ -38,7 +38,7 @@ export default Backbone.View.extend( {
 
     events: {
         'click .start-icon': 'start',
-        'click .taskbar-dock .taskbar-icon, .taskbar-dock .taskbar-icon-child': 'showWindowClicked',
+        'click .taskbar-dock .taskbar-icon-contain, .taskbar-dock .taskbar-icon-child': 'showWindowClicked',
         'contextmenu ': 'onRightClick',
         'click .context-menu li': 'contextChoice'
     },
@@ -55,7 +55,7 @@ export default Backbone.View.extend( {
     },
 
     start: function() {
-
+        this.$el.find( '.start-menu' ).toggleClass( 'active' );
     },
 
     showWindowClicked: function( ev ){
@@ -63,6 +63,8 @@ export default Backbone.View.extend( {
 
         var target = $(ev.target).closest('[data-parent-window]');
         var parentId = target.attr('data-parent-window');
+
+        console.log( 'parentId', parentId );
 
         if( parentId ){
 

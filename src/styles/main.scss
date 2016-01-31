@@ -28,29 +28,29 @@ $green: green;
 
 
 @mixin webkitScrollbar () {
-	::-webkit-scrollbar {
-	    width: 10px;
-	}
-	::-webkit-scrollbar:horizontal {
-	    height:10px;
-	}
-	::-webkit-scrollbar-track {
-	    background:#eaeaea;
-	    border-left: 1px solid #ccc;
-	}
-	::-webkit-scrollbar-track:horizontal {
-	    border-top: 1px solid #ccc;
-	}
-	::-webkit-scrollbar-thumb {
-	    background-color: #ccc;
-	    border-radius:5px;
-	}
-	::-webkit-scrollbar-thumb:hover {
-	    background-color: #aaa;
-	}
-	::-webkit-scrollbar-corner{
-	    background:#eaeaea;
-	}
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar:horizontal {
+        height:10px;
+    }
+    ::-webkit-scrollbar-track {
+        background:#eaeaea;
+        border-left: 1px solid #ccc;
+    }
+    ::-webkit-scrollbar-track:horizontal {
+        border-top: 1px solid #ccc;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius:5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
+    }
+    ::-webkit-scrollbar-corner{
+        background:#eaeaea;
+    }
 }
 @mixin iconFlexCenter() {
     display:-webkit-flex;
@@ -301,12 +301,12 @@ div {
             width: 98px;
             height: 98px;
             margin: 1px;
-            display: -webkit-flex;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            flex-direction: column;
-            overflow:hidden;
+            // display: -webkit-flex;
+            // display: flex;
+            // justify-content: center;
+            // align-content: center;
+            // flex-direction: column;
+            // overflow:hidden;
             position: absolute;
 
             &.selected {
@@ -315,24 +315,35 @@ div {
 
             &:hover, &:active {
                 opacity:1;
-                background: rgba(192,192,192,.7);
+                // background: rgba(192,192,192,.7);
             }
             &.ui-selecting, &.ui-selected {
                 background: #FECA40;
-            }
-            span {
-                color: $black;
-                font-size: 0.9em;
-                padding: 10px 0;
-                z-index:2;
-                text-align:center;
             }
             .desktop-icon{
                 display:block;
                 margin:0 auto;
                 max-width:45px;
                 max-height:45px;
-                z-index:2;
+                z-index: 1;
+
+                position: absolute;
+                transform: translate( 50%, 10% );
+            }
+            &[icon-type='mydocuments']{
+                .label::before {
+                    content: 'My Documents';
+                }
+            }
+            &[icon-type='mycomputer']{
+                .label::before {
+                    content: 'My Computer';
+                }
+            }
+            &[icon-type='recyclebin']{
+                .label::before {
+                    content: 'Recycle Bin';
+                }
             }
         }
     }
@@ -483,9 +494,9 @@ div {
     }
     .taskbar-dock{
         height: 100%;
-        width: calc( 100% - 100px);
+        width: calc( 100% - 90px);
         position: absolute;
-        left: 100px;
+        left: 90px;
 
         .notification-area {
             position: absolute;
@@ -498,7 +509,7 @@ div {
         }
 
         .taskbar-icon-contain{
-            @include iconFlexCenter();
+            // @include iconFlexCenter();
             width: 50px;
             height: 50px;
             background: rgba(0,0,0,0);
@@ -506,42 +517,22 @@ div {
             left: 0;
             position: relative;
             transition: background 0.3s ease, height 0.3s ease, width 0.3s ease, top 0.3s ease, opacity 500ms linear;
+            // padding-right: 10px;
+            border: 1px solid rgba(240, 248, 255, 0);
 
             &.hidden {
                 opacity: 0;
                 height: 0;
                 width: 0;
             }
-            &.active{
-                background: rgba(0,0,0,1);
-                height: 60px;
-                top: -10px;
-                .iconActiveColor{
-                    display:block;
-                    height: 5px;
-                    top: -5px;
-                }
-                &:hover{
-                    background: rgba(0,0,0,1);
-                    .icon-grouping{
-                        max-height: 80vh;
-                        transition:max-height 0.3s ease;
-                        transition-delay:0.6s;
-                    }
-                }
-                .icon-grouping {
-                    bottom:65px;
-                    max-height:0;
-                    transition:bottom 0.3s ease, max-height 0.3s ease;
-                    transition-delay:0;
-                }
-            }
             &:hover{
-               background: rgba(0,0,0,0.8);
+                background: rgba(240, 248, 255, 0.25);
+                border: 1px solid rgba(240, 248, 255, 0.25);
+                border-radius: 5px;
+
                 .icon-grouping {
                     max-height: 80vh;
                     transition:max-height 0.3s ease;
-                    transition-delay:0.6s;
                 }
             }
             .icon-grouping {
@@ -550,22 +541,67 @@ div {
                 left:0;
                 display: block;
                 height: auto;
+                width: 100%;
                 max-height: 0;
                 overflow:hidden;
                 transition:bottom 0.3s ease, max-height 0.3s ease;
                 transition-delay:0;
-                &:hover {
+                color: #000;
+                border-radius: 5px 5px 0px 0px;
 
-                }
                 .taskbar-icon-child {
-                    width:50px;
-                    height:50px;
-                    background:$black50;
-                    @include iconFlexCenter();
-                    transition:background 0.3s ease;
+                    width: 100%;
+                    height: 50px;
+                    background: rgba(240,248,255,0.5);
+                    // @include iconFlexCenter();
+                    transition: background 0.3s ease;
                     position: relative;
-                    &:hover, &.active{
-                        background:$black80;
+                    padding-left: 40px;
+
+                    &:hover {
+                        background: rgba(240,248,255,0.85);
+                    }
+                    &::before {
+                        content: "";
+                        width: calc( 100% - 40px);
+                        text-align: center;
+                        height: 100%;
+                        top: 25%;
+                        position: absolute;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        padding-right: 10px;
+                    }
+                    &[title='mycomputer'] {
+                        &::before {
+                            content: "My Computer";
+                        }
+                    }
+                    &[title='mydocuments'] {
+                        &::before {
+                            content: "My Documents";
+                        }
+                    }
+                    &[title='browser'] {
+                        &::before {
+                            content: "Inception Browser";
+                        }
+                    }
+                    &[title='recyclebin'] {
+                        &::before {
+                            content: "Recycle Bin";
+                        }
+                    }
+                    &[title='weather'] {
+                        &::before {
+                            content: "Weather";
+                        }
+                    }
+
+                    .taskbar-icon {
+                        width: 100%;
+                        height: 100%;
                     }
                 }
                 .taskbar-icon {
@@ -751,6 +787,163 @@ div {
                     font-style: italic;
                 }
             }
+            .start-menu {
+                position: absolute;
+                bottom: 100%;
+                left: 10px;
+                width: 350px;
+                color: black;
+                background: #fff;
+                border-radius: 5px 5px 0 0;
+                border-right: 2px solid #0854B8;
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+
+                .user {
+                    background: linear-gradient(#03469e 10%, #1378fd);
+                    border-radius: 5px 5px 0 0;
+                    height: 50px;
+                    padding: 5px;
+                }
+
+                .inner {
+                    height: 200px;
+                    ul {
+                        display: inline-block;
+                        vertical-align: top;
+                        width: 50%;
+                        height: 100%;
+                        padding: 5px;
+                    }
+                    .left-list {
+                        font-size: 1.2em;
+
+                    }
+                    .right-list {
+                        font-size: 0.95em;
+                        background: #51A2F9;
+                        border-left: 2px solid #1276FA;
+                    }
+                }
+
+                .power {
+                    background: linear-gradient(#1378fd 10%, #03469e);
+                    height: 40px;
+                    padding: 5px;
+                }
+            }
+        }
+        .dock-windows {
+            width: calc( 100% - 200px);
+            color: #fff;
+            display: flex;
+
+            .taskbar-icon-contain  {
+                display: inline-block;
+                width: 185px;
+                padding-left: 40px;
+
+                &::before {
+                    content: "";
+                    width: calc( 100% - 40px);
+                    text-align: center;
+                    height: 100%;
+                    top: 25%;
+                    position: absolute;
+                    padding-right: 10px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                &[title="mycomputer"]{
+                    &::before {
+                        content: "My Computer";
+                    }
+                }
+                &[title="mydocuments"]{
+                    &::before {
+                        content: "My Documents";
+                    }
+                }
+                &[title="browser"]{
+                    &::before {
+                        content: "Inception Browser";
+                    }
+                }
+                &[title="recyclebin"]{
+                    &::before {
+                        content: "Recycle Bin";
+                    }
+                }
+                &[title="weather"]{
+                    &::before {
+                        content: "Weather";
+                    }
+                }
+
+                .taskbar-icon {
+                    width: 30px;
+                    height: 30px;
+
+                    &::before {
+                        background-image: url("../images/icons/icons-xp.png");
+                        height: 40px;
+                        width: 35px;
+                        background-size: 130px;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        content: "";
+                    }
+
+                    &.mycomputer {
+                        &::before {
+                            background-position: 0px 0px;
+                        }
+                    }
+                    &.mydocuments {
+                        &::before {
+                            background-position: 0px -103px;
+                        }
+                    }
+                    &.recyclebin {
+                        &::before {
+                            background-position: -4px -68px;
+                        }
+                    }
+                    &.browser {
+                        &::before {
+                            background-position: 6px 3px;
+                            background-image: url("../images/icons/spin-top.png");
+                            background-size: 75%;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    &.weather {
+                        &::before {
+                            background-size: 85%;
+                            background-repeat: no-repeat;
+                            background-image: url("../images/icons/weather2.png");
+                            background-position: 5px 10px;
+                            -webkit-filter: brightness(3);
+                            filter: brightness(3);
+                        }
+                    }
+                }
+                .taskbar-icon-child {
+                    .taskbar-icon {
+                        &.weather {
+                            &::before {
+                                filter: none;
+                                -webkit-filter: none;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -819,8 +1012,9 @@ div {
         }
         @include innerRepeater( recyclebin, 4, 86 );
         @include innerRepeater( mycomputer, 2, 0 );
+        @include innerRepeater( mydocuments, 6, 65 );
 
-        &.mycomputer, &.recyclebin {
+        &.mycomputer, &.recyclebin, &.mydocuments {
             .window_content {
                 .file-menu, .nav-menu, .address-bar {
                     font-size: 12px;
@@ -879,18 +1073,27 @@ div {
     #desktop {
         .desktop-contain {
             .desktop-icon-contain {
+
+                &[icon-type='mycomputer']{
+                    .desktop-icon {
+                        background: url("../images/icons/icons-xp.png") 0px 4px;
+                    }
+                }
+                &[icon-type='mydocuments']{
+                    .desktop-icon {
+                        background: url("../images/icons/icons-xp.png") 0px -120px;
+                    }
+                }
+                &[icon-type='recyclebin']{
+                    .desktop-icon {
+                        background: url("../images/icons/icons-xp.png") -5px -79px;
+                    }
+                }
                 .desktop-icon{
                     width: 100%;
                     height: 100%;
                     background-repeat: no-repeat;
                     background-size: contain;
-
-                    &.mycomputer {
-                        background: url("../images/icons/icons-xp.png") 0px 4px;
-                    }
-                    &.recyclebin {
-                        background: url("../images/icons/icons-xp.png") -5px -79px;
-                    }
                 }
             }
         }
@@ -909,6 +1112,9 @@ div {
                     background-size: contain;
                     &.mycomputer {
                         background: url("../images/icons/icons-xp.png") 0px 4px;
+                    }
+                    &.mydocuments {
+                        background: url("../images/icons/icons-xp.png") 0px -120px;
                     }
                     &.recyclebin {
                         background: url("../images/icons/icons-xp.png") 0px -79px;
@@ -930,20 +1136,45 @@ div {
 
 
 
+.desktop-icon-contain {
+    .label  {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 40px;
 
-.desktop-icon{
-    &.weather {
-        background-size: contain;
-        background-repeat: no-repeat;
-        background: url("../images/icons/weather2.png");
-        background-position: 0px 15px;
+        &::before {
+            position: absolute;
+            bottom: 0px;
+            content: "";
+            text-align: center;
+            width: 100%;
+            top: 0;
+        }
     }
-    &.browser {
-        background: url("../images/icons/spin-top.png") 5px 0px;
-        background-size: contain;
-        background-repeat: no-repeat;
+    &[icon-type='weather']{
+        .desktop-icon {
+            background: url("../images/icons/weather2.png");
+            background-position: 0px 15px;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .label::before {
+            content: "Weather";
+        }
+    }
+    &[icon-type='browser']{
+        .desktop-icon {
+            background: url("../images/icons/spin-top.png") 5px 0px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .label::before {
+            content: "Inception Browser";
+        }
     }
 }
+
 
 
 

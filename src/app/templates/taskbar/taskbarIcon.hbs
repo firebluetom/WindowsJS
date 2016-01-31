@@ -1,16 +1,13 @@
 <div class="taskbar-icon-contain {{hidden}}" data-parent-window="{{id}}" title="{{windowTitle}}" data-icon-only="{{iconOnly}}">
 
-    <svg class="taskbar-icon" title="{{windowTitle}}">
-    	<use xlink:href="{{icon}}" />
-    </svg>
+
+    <div class="taskbar-icon {{icon}}" title="{{windowTitle}}"> </div>
 
     {{#if children}}
     <div class="icon-grouping" >
         {{#each children}}
         <div class="taskbar-icon-child" data-parent-window="{{id}}" title="{{windowTitle}}">
-		    <svg class="taskbar-icon">
-		    	<use xlink:href="{{icon}}" />
-		    </svg>
+		    <div class="taskbar-icon {{icon}}" title="{{windowTitle}}"> </div>
         </div>
         {{/each}}
     </div>

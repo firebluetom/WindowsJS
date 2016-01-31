@@ -5,6 +5,7 @@ import Model from '../models/Model';
 import windowPartial from '../templates/partials/windowPartial.hbs';
 // import Window from '../views/programs/Window';
 import MyComputer from '../views/programs/MyComputer';
+import MyDocuments from '../views/programs/MyDocuments';
 import RecycleBin from '../views/programs/RecycleBin';
 import Browser from '../views/programs/Browser';
 import Weather from '../views/programs/Weather';
@@ -15,6 +16,7 @@ var viewMap = {
     // 'window': Window,
     recyclebin: RecycleBin,
     mycomputer: MyComputer,
+    mydocuments: MyDocuments,
     browser: Browser,
     weather: Weather
 };
