@@ -6,11 +6,22 @@ import DockIconsCollection from '../../collections/DockIconsCollection';
 import template from '../../templates/taskbar/taskbar.hbs';
 import taskbarIconTemplate from "../../templates/taskbar/taskbarIcon.hbs"
 
+var themes = [ 'xp', 'win7', 'win10' ];
+var themesIdx = 0;
+
 export default Backbone.View.extend( {
 
     el: '#taskbar',
 
     model: new Model(),
+
+    events: {
+        'click .start-icon': 'start',
+        'click .taskbar-dock .taskbar-icon-contain, .taskbar-dock .taskbar-icon-child': 'showWindowClicked',
+        'contextmenu ': 'onRightClick',
+        'click .context-menu li': 'contextChoice',
+        'click .switch': 'switchThemes'
+    },
 
     initialize: function(){
         var self = this;
@@ -34,13 +45,6 @@ export default Backbone.View.extend( {
         this.listenTo( this.iconsCollection, 'add', function( model ){
             self.windowAdded( model.toJSON() );
         });
-    },
-
-    events: {
-        'click .start-icon': 'start',
-        'click .taskbar-dock .taskbar-icon-contain, .taskbar-dock .taskbar-icon-child': 'showWindowClicked',
-        'contextmenu ': 'onRightClick',
-        'click .context-menu li': 'contextChoice'
     },
 
     modelChanged: function(){
@@ -209,6 +213,14 @@ export default Backbone.View.extend( {
                 break;
         }
 
+    },
+
+    switchThemes: function(){
+        $("#wrapper").attr( 'class', this.nextTheme() );
+    },
+
+    nextTheme: function(){
+        return themes[ ( themesIdx++ ) % themes.length ];
     },
 
     render: function(){
