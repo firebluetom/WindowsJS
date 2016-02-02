@@ -220,7 +220,8 @@ export default Backbone.View.extend( {
     },
 
     nextTheme: function(){
-        return themes[ ( themesIdx++ ) % themes.length ];
+        themesIdx++;
+        return themes[ themesIdx % themes.length ];
     },
 
     render: function(){

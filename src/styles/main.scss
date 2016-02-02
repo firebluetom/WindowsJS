@@ -471,7 +471,6 @@ div {
         color: $white;
         width: 100px;
         height: 100%;
-        background: radial-gradient( circle, #01C101, green );
         transition: background 0.3s ease;
         border-radius: 0 20px 20px 0px; // fallback
         border-radius: 8px / 24px;
@@ -479,12 +478,14 @@ div {
         color: #fff;
         left: -10px;
 
-        &:hover{
-            background: radial-gradient(circle, #01C101, #018C01);
-        }
-
-        &.button-active{
-            background: radial-gradient(circle, #01C101, #018C01)
+        .start-menu {
+            position: absolute;
+            bottom: 100%;
+            left: 10px;
+            width: 350px;
+            color: black;
+            background: #fff;
+            display: none;
         }
         .taskbar-icon{
             width: 30px;
@@ -499,6 +500,12 @@ div {
         width: calc( 100% - 90px);
         position: absolute;
         left: 90px;
+
+        .dock-windows {
+            width: calc( 100% - 200px);
+            color: #fff;
+            display: flex;
+        }
 
         .notification-area {
             position: absolute;
@@ -766,16 +773,24 @@ div {
 .xp {
     #taskbar {
         .start-wrapper {
-            transition: all 100ms linear;
+            transition: all 200ms linear;
+            background: -webkit-radial-gradient(circle, #01C101, #018C01);
+            background: radial-gradient(circle, #02A902, #027902);
 
             &.active {
-
                 background: radial-gradient(circle, #01C101, #018C01);
                 box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 
                 .start-menu {
                     display: block;
                 }
+            }
+
+            &:hover{
+                background: radial-gradient(circle, #01C101, #018C01);
+            }
+            &.button-active{
+                background: radial-gradient(circle, #01C101, #018C01)
             }
 
             .start-icon {
@@ -854,9 +869,6 @@ div {
             }
         }
         .dock-windows {
-            width: calc( 100% - 200px);
-            color: #fff;
-            display: flex;
 
             .taskbar-icon-contain  {
                 display: inline-block;
@@ -995,8 +1007,6 @@ div {
                     }
                 }
             }
-        }
-        .window_inner {
             .window-icon {
                 background-image: url("../images/icons/icons-xp.png");
                 height: 100%;
@@ -1117,10 +1127,235 @@ div {
     }
 }
 
-.win-7 {
+
+// WINDOWS 7
+
+.win7 {
+
+    #taskbar {
+        background: none;
+        border-top: 1px solid rgb(15, 132, 246);
+        box-shadow: 0px -1px 5px rgba(0,0,0,0.5);
+
+        &::before {
+            background: linear-gradient(#1378fd 10%, #03469e);
+            filter: blur( 2px );
+            content: '';
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+        }
+
+        .start-wrapper {
+            transition: all 100ms linear;
+            &.active {
+                .start-menu {
+                    display: block;
+                }
+            }
+
+            .start-icon {
+                width: 60%;
+                height: 100%;
+                display: inline-block;
+                position: absolute;
+                width: 100%;
+                left: -10px;
+
+                &::before {
+                    background: url("../images/StartWin7.png") center center no-repeat;
+                    content: '';
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 5px;
+                    background-size: contain;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+        .taskbar-dock {
+            .dock-windows {
+                .taskbar-icon-contain  {
+                    display: inline-block;
+                    width: 185px;
+                    padding-left: 40px;
+
+                    &::before {
+                        content: "";
+                        width: calc( 100% - 40px);
+                        text-align: center;
+                        height: 100%;
+                        top: 25%;
+                        position: absolute;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    &[title="mycomputer"]{
+                        &::before {
+                            content: "My Computer";
+                        }
+                    }
+                    &[title="mydocuments"]{
+                        &::before {
+                            content: "My Documents";
+                        }
+                    }
+                    &[title="browser"]{
+                        &::before {
+                            content: "Inception Browser";
+                        }
+                    }
+                    &[title="recyclebin"]{
+                        &::before {
+                            content: "Recycle Bin";
+                        }
+                    }
+                    &[title="weather"]{
+                        &::before {
+                            content: "Weather";
+                        }
+                    }
+
+                    .taskbar-icon {
+                        width: 30px;
+                        height: 30px;
+
+                        &::before {
+                            background-image: url("../images/icons/icons-xp.png");
+                            height: 40px;
+                            width: 35px;
+                            background-size: 130px;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            content: "";
+                        }
+
+                        &.mycomputer {
+                            &::before {
+                                background-position: 0px 0px;
+                            }
+                        }
+                        &.mydocuments {
+                            &::before {
+                                background-position: 0px -103px;
+                            }
+                        }
+                        &.recyclebin {
+                            &::before {
+                                background-position: -4px -68px;
+                            }
+                        }
+                        &.browser {
+                            &::before {
+                                background-position: 6px 3px;
+                                background-image: url("../images/icons/spin-top.png");
+                                background-size: 75%;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                        &.weather {
+                            &::before {
+                                background-size: 85%;
+                                background-repeat: no-repeat;
+                                background-image: url("../images/icons/weather2.png");
+                                background-position: 5px 10px;
+                                -webkit-filter: brightness(3);
+                                filter: brightness(3);
+                            }
+                        }
+                    }
+                    .taskbar-icon-child {
+                        .taskbar-icon {
+                            &.weather {
+                                &::before {
+                                    filter: none;
+                                    -webkit-filter: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            .notification-area {
+                background: none;
+            }
+        }
+    }
 
     #desktop {
+
+        &::before {
+            background: url("../images/windows-7-wallpaper.jpg") 0px 4px;
+            left: 0;
+            top: -10%;
+            width: 100%;
+            height: 110%;
+            background-size: cover;
+
+        }
+
         .desktop-contain {
+            .window {
+                border-radius: 3px;
+
+                .window_inner {
+                    .window-top {
+                        background: none;
+
+                        &::before {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            z-index: -1;
+                            background: linear-gradient(#1378fd 10%, #03469e);
+                            filter: blur(2px);
+                            content: '';
+                        }
+
+                        .float_right {
+                            .window-close, .window-min, .window-resize {
+                                height: 25px;
+                                width: 20px;
+                            }
+                            .window-close {
+                                width: 41px;
+                            }
+                            .min, .res, .close {
+                                background-image: url("../images/win7-window-controls.png");
+                                background-repeat: no-repeat;
+                                width: 100%;
+                                height: 100%;
+                                opacity: 0.8;
+                                transition: all 300ms ease;
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                            .min {
+                                background-position: 0 0;
+                                border-radius: 0 0 0 10px;
+                            }
+                            .res {
+                                background-position: -21px 0;
+                            }
+                            .close {
+                                background-position: -41px 0px;
+                                border-radius: 0 0 10px 0;
+                            }
+                        }
+                    }
+                }
+            }
+
             .desktop-icon-contain {
                 .desktop-icon{
                     width: 100%;
@@ -1143,6 +1378,251 @@ div {
 }
 
 
+.win10 {
+
+    #taskbar {
+        background: none;
+        box-shadow: 0px -1px 5px rgba(0,0,0,0.5);
+
+        &::before {
+            content: '';
+            background: linear-gradient(#023982 10%, #001C42);
+            background: #001531;
+            width: 100%;
+            height: 100%;
+            // opacity: 0.7;
+        }
+
+        .start-wrapper {
+            transition: all 100ms linear;
+            &.active {
+                .start-menu {
+                    display: block;
+                }
+            }
+
+            .start-icon {
+                width: 60%;
+                height: 100%;
+                display: inline-block;
+                position: absolute;
+                width: 100%;
+                left: -10px;
+
+                &::before {
+                    background: url("../images/StartWin10.png") center center no-repeat;
+                    content: '';
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 5px;
+                    background-size: contain;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+        .taskbar-dock {
+            .dock-windows {
+                .taskbar-icon-contain  {
+                    display: inline-block;
+                    width: 185px;
+                    padding-left: 40px;
+
+                    &::before {
+                        content: "";
+                        width: calc( 100% - 40px);
+                        text-align: center;
+                        height: 100%;
+                        top: 25%;
+                        position: absolute;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    &[title="mycomputer"]{
+                        &::before {
+                            content: "My Computer";
+                        }
+                    }
+                    &[title="mydocuments"]{
+                        &::before {
+                            content: "My Documents";
+                        }
+                    }
+                    &[title="browser"]{
+                        &::before {
+                            content: "Inception Browser";
+                        }
+                    }
+                    &[title="recyclebin"]{
+                        &::before {
+                            content: "Recycle Bin";
+                        }
+                    }
+                    &[title="weather"]{
+                        &::before {
+                            content: "Weather";
+                        }
+                    }
+
+                    .taskbar-icon {
+                        width: 30px;
+                        height: 30px;
+
+                        &::before {
+                            background-image: url("../images/icons/icons-xp.png");
+                            height: 40px;
+                            width: 35px;
+                            background-size: 130px;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            content: "";
+                        }
+
+                        &.mycomputer {
+                            &::before {
+                                background-position: 0px 0px;
+                            }
+                        }
+                        &.mydocuments {
+                            &::before {
+                                background-position: 0px -103px;
+                            }
+                        }
+                        &.recyclebin {
+                            &::before {
+                                background-position: -4px -68px;
+                            }
+                        }
+                        &.browser {
+                            &::before {
+                                background-position: 6px 3px;
+                                background-image: url("../images/icons/spin-top.png");
+                                background-size: 75%;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                        &.weather {
+                            &::before {
+                                background-size: 85%;
+                                background-repeat: no-repeat;
+                                background-image: url("../images/icons/weather2.png");
+                                background-position: 5px 10px;
+                                -webkit-filter: brightness(3);
+                                filter: brightness(3);
+                            }
+                        }
+                    }
+                    .taskbar-icon-child {
+                        .taskbar-icon {
+                            &.weather {
+                                &::before {
+                                    filter: none;
+                                    -webkit-filter: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            .notification-area {
+                background: none;
+            }
+        }
+    }
+
+    #desktop {
+
+        &::before {
+            background: url("../images/windows-10-wallpaper.jpg") 0px 4px;
+            left: 0;
+            top: -10%;
+            width: 100%;
+            height: 110%;
+            background-size: cover;
+
+        }
+
+        .desktop-contain {
+            .window {
+                border-radius: 3px;
+
+                .window_inner {
+                    .window-top {
+                        background: none;
+
+                        &::before {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            z-index: -1;
+                            background: linear-gradient(#1378fd 10%, #03469e);
+                            filter: blur(2px);
+                            content: '';
+                        }
+
+                        .float_right {
+                            .window-close, .window-min, .window-resize {
+                                height: 25px;
+                                width: 20px;
+                            }
+                            .window-close {
+                                width: 41px;
+                            }
+                            .min, .res, .close {
+                                background-image: url("../images/win7-window-controls.png");
+                                background-repeat: no-repeat;
+                                width: 100%;
+                                height: 100%;
+                                opacity: 0.8;
+                                transition: all 300ms ease;
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                            .min {
+                                background-position: 0 0;
+                                border-radius: 0 0 0 10px;
+                            }
+                            .res {
+                                background-position: -21px 0;
+                            }
+                            .close {
+                                background-position: -41px 0px;
+                                border-radius: 0 0 10px 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .desktop-icon-contain {
+                .desktop-icon{
+                    width: 100%;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    &.mycomputer {
+                        background: url("../images/icons/icons-xp.png") 0px 4px;
+                    }
+                    &.mydocuments {
+                        background: url("../images/icons/icons-xp.png") 0px -120px;
+                    }
+                    &.recyclebin {
+                        background: url("../images/icons/icons-xp.png") 0px -79px;
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 
