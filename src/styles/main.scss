@@ -113,6 +113,7 @@ html{
 *, *:before, *:after{
     box-sizing: inherit;
     font-family:$font-abel;
+    -webkit-font-smoothing: antialiased;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -357,9 +358,8 @@ div {
     top: 30px;
     left: 120px;
     z-index: 2;
-    -webkit-transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition:         all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid #0752B5;
+    transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
     overflow: hidden;
 
     &.ui-draggable-dragging {
@@ -490,9 +490,6 @@ div {
         .taskbar-icon{
             width: 30px;
             height: 30px;
-        }
-        .start-icon{
-
         }
     }
     .taskbar-dock{
@@ -979,6 +976,7 @@ div {
 
     .window {
         border-radius: 3px;
+        border: 2px solid #0752B5;
 
         .window_inner {
             .window-top {
@@ -1149,6 +1147,11 @@ div {
         .start-wrapper {
             transition: all 100ms linear;
             &.active {
+                .start-icon {
+                    &::before {
+                        filter: brightness( 1.2 );
+                    }
+                }
                 .start-menu {
                     display: block;
                 }
@@ -1161,6 +1164,7 @@ div {
                 position: absolute;
                 width: 100%;
                 left: -10px;
+                transition: all 300ms ease;
 
                 &::before {
                     background: url("../images/StartWin7.png") center center no-repeat;
@@ -1171,6 +1175,13 @@ div {
                     top: 0;
                     left: 5px;
                     background-size: contain;
+                    transition: all 300ms ease;
+
+                }
+                &:hover {
+                    &::before {
+                        filter: brightness( 1.1 );
+                    }
                 }
 
                 span {
@@ -1306,20 +1317,19 @@ div {
         .desktop-contain {
             .window {
                 border-radius: 3px;
+                background-color: #619bb9;
+                border: 1px solid #ddd;
+                border: solid 1px #102a3e;
+                background: linear-gradient(top, rgba(50, 123, 165, 0.75), rgba(46, 75, 90, 0.75) 50%, rgba(92, 176, 220, 0.75));
+                box-shadow: inset 0 0 1px #fff;
 
                 .window_inner {
+                    width: 98%;
+                    height: 98%;
+                    margin: 0 auto;
+
                     .window-top {
                         background: none;
-
-                        &::before {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            z-index: -1;
-                            background: linear-gradient(#1378fd 10%, #03469e);
-                            filter: blur(2px);
-                            content: '';
-                        }
 
                         .float_right {
                             .window-close, .window-min, .window-resize {
@@ -1379,6 +1389,7 @@ div {
 
 
 .win10 {
+    color: white;
 
     #taskbar {
         background: none;
@@ -1396,6 +1407,14 @@ div {
         .start-wrapper {
             transition: all 100ms linear;
             &.active {
+                .start-icon {
+                    background: rgba(99,99,99,.5);
+
+                    &::before {
+                        background: url("../images/StartWin10.png") 34px -30px no-repeat;
+                        top: 1px;
+                    }
+                }
                 .start-menu {
                     display: block;
                 }
@@ -1408,16 +1427,25 @@ div {
                 position: absolute;
                 width: 100%;
                 left: -10px;
+                transition: background 300ms ease;
+                overflow: hidden;
 
+                &:hover {
+                    &::before {
+                        background: url("../images/StartWin10.png") 34px -30px no-repeat;
+                        top: 1px;
+                    }
+                }
                 &::before {
-                    background: url("../images/StartWin10.png") center center no-repeat;
+                    background: url("../images/StartWin10.png") 35px 30px no-repeat;
                     content: '';
-                    height: 100%;
+                    height: 60px;
                     width: 100%;
                     position: absolute;
-                    top: 0;
+                    top: -25px;
                     left: 5px;
                     background-size: contain;
+                    // filter: blur( 1px );
                 }
 
                 span {
@@ -1429,8 +1457,7 @@ div {
             .dock-windows {
                 .taskbar-icon-contain  {
                     display: inline-block;
-                    width: 185px;
-                    padding-left: 40px;
+                    width: 45px;
 
                     &::before {
                         content: "";
@@ -1443,31 +1470,6 @@ div {
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
-                    }
-                    &[title="mycomputer"]{
-                        &::before {
-                            content: "My Computer";
-                        }
-                    }
-                    &[title="mydocuments"]{
-                        &::before {
-                            content: "My Documents";
-                        }
-                    }
-                    &[title="browser"]{
-                        &::before {
-                            content: "Inception Browser";
-                        }
-                    }
-                    &[title="recyclebin"]{
-                        &::before {
-                            content: "Recycle Bin";
-                        }
-                    }
-                    &[title="weather"]{
-                        &::before {
-                            content: "Weather";
-                        }
                     }
 
                     .taskbar-icon {
@@ -1552,58 +1554,69 @@ div {
 
         .desktop-contain {
             .window {
-                border-radius: 3px;
+                border-radius: 1px;
+                color: black;
+                box-shadow: 0 0 10px black;
 
                 .window_inner {
+                    background: #fff;
+                    color: black;
+
                     .window-top {
                         background: none;
-
-                        &::before {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            z-index: -1;
-                            background: linear-gradient(#1378fd 10%, #03469e);
-                            filter: blur(2px);
-                            content: '';
-                        }
+                        color: black;
+                        border-bottom: 1px solid #ccc;
 
                         .float_right {
                             .window-close, .window-min, .window-resize {
                                 height: 25px;
-                                width: 20px;
-                            }
-                            .window-close {
-                                width: 41px;
-                            }
-                            .min, .res, .close {
-                                background-image: url("../images/win7-window-controls.png");
-                                background-repeat: no-repeat;
-                                width: 100%;
-                                height: 100%;
-                                opacity: 0.8;
-                                transition: all 300ms ease;
+                                width: 30px;
+                                text-align: center;
+
+                                &::before {
+                                    content: '';
+                                    width: 100%;
+                                    height: 100%;
+                                    vertical-align: sub;
+                                }
                                 &:hover {
-                                    opacity: 1;
+                                    background: #B3B2B2;
+                                    background: #ccc;
+                                }
+                                .min, .res, .close {
+                                    display: none;
                                 }
                             }
-                            .min {
-                                background-position: 0 0;
-                                border-radius: 0 0 0 10px;
+                            .window-min::before {
+                                content: '\2574';
                             }
-                            .res {
-                                background-position: -21px 0;
+                            .window-resize::before {
+                                content: '\25FB';
                             }
-                            .close {
-                                background-position: -41px 0px;
-                                border-radius: 0 0 10px 0;
+                            .window-close {
+                                &::before {
+                                    content: '\2715';
+                                }
+                                &:hover {
+                                    background: rgba(236,5,5,1);
+                                }
                             }
+
                         }
+                    }
+                    .window_content {
+                        padding-top: 5px;
                     }
                 }
             }
 
             .desktop-icon-contain {
+                .label {
+                    &::before {
+                            text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+                    }
+                }
+
                 .desktop-icon{
                     width: 100%;
                     height: 100%;
@@ -1625,7 +1638,26 @@ div {
 }
 
 
-
+.switch {
+    font-weight: bold;
+    text-shadow:
+    0 1px #808d93,
+    -1px 0 #cdd2d5,
+    -1px 2px #808d93,
+    -2px 1px #cdd2d5,
+    -2px 3px #808d93,
+    -3px 2px #cdd2d5,
+    -3px 4px #808d93,
+    -4px 3px #cdd2d5,
+    -4px 5px #808d93,
+    -5px 4px #cdd2d5,
+    -5px 6px #808d93,
+    -6px 5px #cdd2d5,
+    -6px 7px #808d93,
+    -7px 6px #cdd2d5,
+    -7px 8px #808d93,
+    -8px 7px #cdd2d5;
+}
 
 
 
