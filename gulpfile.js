@@ -13,6 +13,7 @@ var webpackConfig = require('./webpack.config.js')[environment];
 var port = $.util.env.port || 3000;
 var src = 'src/';
 var dist = 'dist/';
+console.log( $.util.env )
 
 var autoprefixerBrowsers = [
   'ie >= 9',
@@ -48,6 +49,7 @@ gulp.task('styles',function(cb) {
       .pipe($.sass().on('error', $.sass.logError))
       .pipe($.autoprefixer({browsers: autoprefixerBrowsers}))
       .pipe( $.concat('main.css') )
+      .pipe( $.minifyCss() )
       .pipe(gulp.dest( dist + 'css/') )
       .pipe($.size({ title : 'css' }))
       .pipe($.connect.reload());
